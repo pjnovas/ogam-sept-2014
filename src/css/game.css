@@ -1,0 +1,23 @@
+html, body {overflow:hidden;}
+
+body {
+  background: #3C3C3C;
+  margin: 0;
+}
+
+#ctn {
+  height: auto;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+  border: 3px solid rgb(141, 141, 141);
+  box-shadow: 0px 0px 100px black inset;
+  background: url('../images/bg.png');
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
