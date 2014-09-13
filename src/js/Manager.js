@@ -65,7 +65,6 @@ $.Manager = $.Base.extend({
 
     //this.cursor.draw(viewCtx);
 
-
     this.wobjects.sort(function(a, b){
       return a.pos.z <= b.pos.z;
     });

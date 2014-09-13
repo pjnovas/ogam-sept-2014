@@ -10,7 +10,7 @@ $.Target = $.Circle.extend({
     this.force = { x: 30, y: 0, z: 0 };
 
     this.shadow = new $.Circle({
-      pos: { x: this.pos.x, y: this.pos.y, z: 50 },
+      pos: { x: this.pos.x, y: this.pos.y, z: config.size.z },
       radius: Math.abs((this.radius - this.pos.z) * 5),
       fill: [0,0,0,0.1]
     });
@@ -29,7 +29,7 @@ $.Target = $.Circle.extend({
 
     var d = $.V.normal(this.center, this.pos);
     d = $.V.add(this.pos, $.V.multiply(d, 10));
-    this.shadow.pos = { x: d.x, y: d.y, z: 50 };
+    this.shadow.pos = { x: d.x, y: d.y, z: config.size.z };
 
     this.shadow.radius = Math.pow(this.radius, -this.pos.z/100) * this.radius*10;
   },

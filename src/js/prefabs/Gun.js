@@ -5,7 +5,7 @@ $.Gun = $.Line.extend({
   size: 10,
 
   dirMove: 0,
-  powa: 5,
+  powa: 10,
   vel: 0,
 
   bounds: {
@@ -55,7 +55,8 @@ $.Gun = $.Line.extend({
   },
 
   updateAim: function(){
-    var d = $.V.normal(this.pos, this.cursor.pos);
+    var to = { x: this.pos.x, y: this.cursor.pos.y, z: 0 };
+    var d = $.V.normal(this.pos, to);
     d.z = this.cursor.pos.y / config.size.y;
     this.dir = d;
 

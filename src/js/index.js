@@ -40,7 +40,9 @@
 
     var size = {
       x: (w > max.x ? max.x : w),
-      y: (h > max.y ? max.y : h)
+      y: (h > max.y ? max.y : h),
+      z: 50,
+      floor: 450
     };
 
     size.x = (size.x < min.x ? min.x : size.x);
