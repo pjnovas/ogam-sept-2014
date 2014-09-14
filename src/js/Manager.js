@@ -10,14 +10,14 @@ $.Manager = $.Base.extend({
     this.shoots = [];
     this.targets = [];
 
-    this.shootPos = { x: config.size.x/2, y: config.size.y, z: 1 };
+    this.shootPos = { x: config.size.x/2, y: config.size.y - 110, z: 1 };
 
     this.gun = new $.Gun({
       pos: this.shootPos,
       cursor: this.cursor,
       bounds: {
-        min: 100,
-        max: config.size.x - 100
+        min: 120,
+        max: config.size.x - 115
       }
     });
 

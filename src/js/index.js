@@ -9,7 +9,7 @@
   }
 
   var gameCtn = $get("ctn");
-  
+
   function $newCanvas(id){
     var cv = doc.createElement("canvas");
     cv.id = id;
@@ -67,9 +67,21 @@
       container: gameCtn
     });
 
+    var cview = $newCanvas("viewport");
+
+    var front = doc.createElement("div");
+    front.id = "front";
+    gameCtn.appendChild(front);
+    
+    var cworld = $newCanvas("world");
+
+    cworld.style.zIndex = 1;
+    front.style.zIndex = 2;
+    cview.style.zIndex = 3;
+    
     w.game = new $.Game({
-      cview: $newCanvas("viewport"),
-      cworld: $newCanvas("world")
+      cview: cview,
+      cworld: cworld
     });
 
     function pauseGame(){
@@ -87,10 +99,37 @@
   }
 
   function onDocLoad(){
-    w.config = configGame();
-    initGame();
 
-    w.game.play();
+    w.Repository = new $.Repository();
+
+    var loader = new $.Loader();
+
+    var images = {
+      "bg": "../images/bg.png",
+      "front": "../images/front.png",
+
+      "gun": "../images/gun.png"
+    };
+
+    loader
+      .initResources(
+        images/*, 
+        sounds*/
+      )
+      .on('error', function(err){
+        window.console.log(err);
+      })
+      .on('report', function(prg){
+        window.console.log('LOADING > ' + prg);
+      })
+      .on('complete', function(){
+        //TODO: check to config before load images to show progress
+        w.config = configGame();
+
+        initGame();
+        w.game.play();
+      })
+      .load();    
   }
 
   w.onload = onDocLoad;

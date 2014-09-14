@@ -1,8 +1,5 @@
 
-$.Gun = $.Line.extend({
-
-  color: [255,255,255],
-  size: 10,
+$.Gun = $.Collection.extend({
 
   dirMove: 0,
   powa: 10,
@@ -16,6 +13,8 @@ $.Gun = $.Line.extend({
   maxVel: 20,
 
   start: function(){
+    this.entities = [];
+
     var self = this;
 
     Controls
@@ -32,6 +31,24 @@ $.Gun = $.Line.extend({
         self.dirMove = 0;
       });
 
+    this.top = new $.Sprite({
+      pos: { x: this.pos.x, y: this.pos.y - 40 },
+      resource: "gun",
+      sprite: { x: 0, y: 0, w: 150, h: 150 },
+      size: { x: 150, y: 150 },
+      angle: 0,
+    });
+
+    this.tube = new $.Sprite({
+      pos: this.pos,
+      resource: "gun",
+      sprite: { x: 0, y: 150, w: 150, h: 150 },
+      size: { x: 150, y: 150 },
+      angle: 0,
+    });
+
+    this.entities.push(this.tube);
+    this.entities.push(this.top);
   },
 
   updateMove: function(){
@@ -52,9 +69,13 @@ $.Gun = $.Line.extend({
       this.vel = 0;
     }
 
+    //TODO: Add movement on shooting
+    this.top.pos = { x: this.pos.x, y: this.pos.y - 40 };
   },
 
   updateAim: function(){
+    //TODO: Add Sprite for up and down animation
+
     var to = { x: this.pos.x, y: this.cursor.pos.y, z: 0 };
     var d = $.V.normal(this.pos, to);
     d.z = this.cursor.pos.y / config.size.y;

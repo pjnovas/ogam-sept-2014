@@ -15,13 +15,11 @@ $.Game = $.Base.extend({
   },
 
   initContexts: function(){
-    var size = config.size
-      , i = 0;
+    var size = config.size;
 
     function getContext(canvas, _size){
       canvas.width = _size.x;
       canvas.height = _size.y;
-      canvas.style.zIndex = ++i;
       return canvas.getContext("2d");
     }
 

@@ -65,7 +65,7 @@ $.Renderer = $.Base.extend({ }, {
   },
 
   sprite: function(ctx, ps){
-    var img = $.repo[ps.resource]
+    var img = Repository[ps.resource]
       , p = $.V.origin(ps.pos, ps.size)
       , x = p.x
       , y = p.y

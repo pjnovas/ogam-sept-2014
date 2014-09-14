@@ -84,6 +84,10 @@ module.exports = function(grunt) {
 
           // MAIN
           
+
+          , '<%= paths.game.js %>Repository.js'
+          , '<%= paths.game.js %>Loader.js'
+
           , '<%= paths.game.js %>Manager.js'
           , '<%= paths.game.js %>GameTime.js'
           , '<%= paths.game.js %>Game.js'
@@ -140,6 +144,8 @@ module.exports = function(grunt) {
 
             , _ : true
             , $ :true
+
+            ,Repository: true
 
             ,Time: true
             ,Particles: true
