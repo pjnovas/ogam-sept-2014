@@ -21,9 +21,22 @@ $.Manager = $.Base.extend({
       }
     });
 
-    this.createTarget({ x: 100, y: 100, z: 40 });
-    this.createTarget({ x: 120, y: 150, z: 35 });
-    this.createTarget({ x: 130, y: 200, z: 30 });
+    this.rails = [];
+    this.createRails();
+
+    this.createTarget({ x: 100, y: 100, z: 45 });
+    this.createTarget({ x: 120, y: 200, z: 45 });
+    this.createTarget({ x: 130, y: 300, z: 45 });
+
+  },
+
+  createRails: function(){
+    for (var i=1; i<4; i++){
+      this.rails = new $.Rail({
+        pos: { x: 0, y: (i*100)+23, z: 46 },
+        wobjects: this.wobjects
+      });
+    }
   },
 
   createTarget: function(pos){
@@ -33,6 +46,8 @@ $.Manager = $.Base.extend({
   },
 
   shoot: function(){
+    this.gun.shoot();
+    
     var s = new $.Shoot({
       pos: this.gun.pos,
       dir: this.gun.dir

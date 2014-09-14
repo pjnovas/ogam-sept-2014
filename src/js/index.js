@@ -108,7 +108,8 @@
       "bg": "../images/bg.png",
       "front": "../images/front.png",
 
-      "gun": "../images/gun.png"
+      "gun": "../images/gun.png",
+      "targets": "../images/targets.png"
     };
 
     loader

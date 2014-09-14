@@ -15,4 +15,25 @@ $.Sprite = $.Entity.extend({
     $.Renderer.sprite(ctx, this);
   },
 
+  getSpatialCircle: function(){
+    
+    return this;
+
+    /*
+    var r = this.radius;
+    if (this.pos.z){
+      r /= this.pos.z * 0.1;
+    }
+    
+    if (r > this.radius){
+      r = this.radius;
+    }
+
+    return {
+      pos: this.pos,
+      radius: r
+    };
+    */
+  }
+
 });

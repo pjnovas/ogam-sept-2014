@@ -23,6 +23,19 @@ $.Renderer = $.Base.extend({ }, {
     $.Renderer.stroke(ctx, ps);
   },
 
+  _deepDelta: function(value, z){
+    var nValue = value;
+    if (z){
+      nValue /= z * 0.05;
+    }
+    
+    if (nValue > value){
+      nValue = value;
+    }
+
+    return nValue;
+  },
+
   circle: function(ctx, ps){
     var start = (ps.angles && ps.angles.start) || 0,
       end = (ps.angles && ps.angles.end) || 2 * Math.PI;
@@ -33,6 +46,8 @@ $.Renderer = $.Base.extend({ }, {
       ctx.lineCap = ps.lineCap;
     }
 
+    var r = this._deepDelta(ps.radius, ps.pos.z);
+/*
     var r = ps.radius;
     if (ps.pos.z){
       r /= ps.pos.z * 0.1;
@@ -41,7 +56,7 @@ $.Renderer = $.Base.extend({ }, {
     if (r > ps.radius){
       r = ps.radius;
     }
-
+*/
     ctx.arc(ps.pos.x, ps.pos.y, r, start, end, false);
 
     $.Renderer.fill(ctx, ps);
@@ -71,6 +86,8 @@ $.Renderer = $.Base.extend({ }, {
       , y = p.y
       , w = ps.size.x
       , h = ps.size.y
+      //, w = this._deepDelta(ps.size.x, ps.pos.z)
+      //, h = this._deepDelta(ps.size.y, ps.pos.z)
       , sp = ps.sprite;
 
     function draw(){

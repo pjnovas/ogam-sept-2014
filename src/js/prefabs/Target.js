@@ -1,9 +1,14 @@
 
-$.Target = $.Circle.extend({
+$.Target = $.Sprite.extend({
 
   fill: [0,255,0],
-  radius: 60,
 
+  radius: 35,
+
+  resource: "targets",
+  sprite: { x: 0, y: 0, w: 100, h: 100 },
+  size: { x: 70, y: 70 },
+  angle: 0,
 
   start: function(){
     this.hit = false;
@@ -11,7 +16,7 @@ $.Target = $.Circle.extend({
 
     this.shadow = new $.Circle({
       pos: { x: this.pos.x, y: this.pos.y, z: config.size.z },
-      radius: Math.abs((this.radius - this.pos.z) * 5),
+      radius: Math.abs((this.radius - this.pos.z) * 2),
       fill: [0,0,0,0.1]
     });
 

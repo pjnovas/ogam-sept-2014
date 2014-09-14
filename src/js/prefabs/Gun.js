@@ -51,6 +51,10 @@ $.Gun = $.Collection.extend({
     this.entities.push(this.top);
   },
 
+  shoot: function(){
+    this.shooted = $.tm + 1000;
+  },
+
   updateMove: function(){
     this.vel += this.dirMove * $.dt * this.powa;
     
@@ -69,8 +73,13 @@ $.Gun = $.Collection.extend({
       this.vel = 0;
     }
 
-    //TODO: Add movement on shooting
     this.top.pos = { x: this.pos.x, y: this.pos.y - 40 };
+
+    if (this.shooted > $.tm){
+      this.top.pos.y += 5;
+      this.shooted = $.tm;
+    }
+    
   },
 
   updateAim: function(){
