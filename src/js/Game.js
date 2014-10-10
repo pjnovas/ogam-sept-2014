@@ -25,11 +25,17 @@ $.Game = $.Base.extend({
 
     this.worldCtx = getContext(this.cworld, size);
     this.viewCtx = getContext(this.cview, size);
+
+    this.canvasBuffer = document.createElement('canvas');
+    this.worldCtxBuffer = getContext(this.canvasBuffer, size);
   },
 
   loop: function(){
     this.manager.update();
-    this.manager.draw(this.viewCtx, this.worldCtx);
+    this.manager.draw(this.viewCtx, this.worldCtxBuffer);
+
+    this.worldCtx.clearRect(0, 0, config.size.x, config.size.y);
+    this.worldCtx.drawImage(this.canvasBuffer, 0, 0);
   },
 
   play: function(){

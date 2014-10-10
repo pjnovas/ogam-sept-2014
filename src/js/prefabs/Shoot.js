@@ -39,10 +39,12 @@ $.Shoot = $.Sprite.extend({
     this.vel.x = $.M.rnd(1, 2) * $.M.rnd11();
   },
 
-  checkCollide: function(targets){
+  checkCollide: function(rails){
     if (this.hit){
       return;
     }
+
+    var targets = rails.getTargets();
 
     targets.forEach(function(target){
       if ($.V3.circlesCollide(this.getSpatialCircle(), target.getSpatialCircle())){

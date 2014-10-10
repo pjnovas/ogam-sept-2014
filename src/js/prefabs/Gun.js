@@ -57,7 +57,7 @@ $.Gun = $.Collection.extend({
 
   updateMove: function(){
     this.vel += this.dirMove * $.dt * this.powa;
-    
+  
     if (Math.abs(this.vel) > this.maxVel){
       this.vel = this.maxVel * this.dirMove;
     }
@@ -79,7 +79,13 @@ $.Gun = $.Collection.extend({
       this.top.pos.y += 5;
       this.shooted = $.tm;
     }
-    
+
+    var deacc = this.powa/2;
+    if (this.vel > 0){
+      deacc*=-1;
+    }
+
+    this.vel += deacc* $.dt;
   },
 
   updateAim: function(){

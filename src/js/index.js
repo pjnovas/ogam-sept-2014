@@ -86,11 +86,9 @@
 
     function pauseGame(){
       if (game.paused){
-        game.mainModal.hide();
         game.play();
       }
       else {
-        game.mainModal.show();
         game.stop(); 
       }
     }

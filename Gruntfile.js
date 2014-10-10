@@ -81,7 +81,9 @@ module.exports = function(grunt) {
           , '<%= paths.game.js %>prefabs/Shoot.js'
           , '<%= paths.game.js %>prefabs/Gun.js'
           , '<%= paths.game.js %>prefabs/Target.js'
+          , '<%= paths.game.js %>prefabs/Targets.js'
           , '<%= paths.game.js %>prefabs/Rail.js'
+          , '<%= paths.game.js %>prefabs/Rails.js'
 
           // MAIN
           

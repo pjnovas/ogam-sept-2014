@@ -8,7 +8,6 @@ $.Manager = $.Base.extend({
 
     this.wobjects = [];
     this.shoots = [];
-    this.targets = [];
 
     this.shootPos = { x: config.size.x/2, y: config.size.y - 110, z: 1 };
 
@@ -21,28 +20,9 @@ $.Manager = $.Base.extend({
       }
     });
 
-    this.rails = [];
-    this.createRails();
-
-    this.createTarget({ x: 100, y: 100, z: 45 });
-    this.createTarget({ x: 120, y: 200, z: 45 });
-    this.createTarget({ x: 130, y: 300, z: 45 });
-
-  },
-
-  createRails: function(){
-    for (var i=1; i<4; i++){
-      this.rails = new $.Rail({
-        pos: { x: 0, y: (i*100)+23, z: 46 },
-        wobjects: this.wobjects
-      });
-    }
-  },
-
-  createTarget: function(pos){
-    var t = new $.Target({ pos: pos });
-    this.targets.push(t);
-    this.wobjects.push(t);
+    this.rails = new $.Rails({
+      wobjects: this.wobjects
+    });
   },
 
   shoot: function(){
@@ -63,13 +43,11 @@ $.Manager = $.Base.extend({
     this.gun.update();
 
     this.shoots.forEach(function(shoot){
-      shoot.checkCollide(this.targets);
+      shoot.checkCollide(this.rails);
       shoot.update();
     }, this);
 
-    this.targets.forEach(function(target){
-      target.update();
-    });
+    this.rails.update();
   },
 
   draw: function(viewCtx, worldCtx){

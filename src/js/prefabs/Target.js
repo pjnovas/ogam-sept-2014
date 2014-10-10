@@ -9,11 +9,12 @@ $.Target = $.Sprite.extend({
   sprite: { x: 0, y: 0, w: 100, h: 100 },
   size: { x: 70, y: 70 },
   angle: 0,
+  force: { x: 30, y: 0, z: 0 },
 
   start: function(){
     this.hit = false;
-    this.force = { x: 30, y: 0, z: 0 };
-
+    this.size = { x: 70, y: 70 };
+    
     this.shadow = new $.Circle({
       pos: { x: this.pos.x, y: this.pos.y, z: config.size.z },
       radius: Math.abs((this.radius - this.pos.z) * 2),
@@ -25,18 +26,21 @@ $.Target = $.Sprite.extend({
 
   update: function(){
     if (this.hit){
-      return;
+      this.size.y = 35;
+      this.shadow = null;
     }
 
     var pos = $.V.add(this.pos, $.V.multiply(this.force, $.dt));
     this.pos = { x: pos.x, y: pos.y, z: this.pos.z };
     this.pos = $.V3.round(this.pos);
 
-    var d = $.V.normal(this.center, this.pos);
-    d = $.V.add(this.pos, $.V.multiply(d, 10));
-    this.shadow.pos = { x: d.x, y: d.y, z: config.size.z };
+    if (this.shadow){
+      var d = $.V.normal(this.center, this.pos);
+      d = $.V.add(this.pos, $.V.multiply(d, 10));
+      this.shadow.pos = { x: d.x, y: d.y, z: config.size.z };
 
-    this.shadow.radius = Math.pow(this.radius, -this.pos.z/100) * this.radius*10;
+      this.shadow.radius = Math.pow(this.radius, -this.pos.z/100) * this.radius*10;
+    }
   },
   
 });

@@ -82,6 +82,13 @@ $.Controls = $.Base.extend({
       return;
     }
 
+    if (evName === "pause"){
+      this.events.pause.forEach(function(cb){
+        cb();
+      });
+      return;
+    }
+
     if (evName){
       
       this.actions[evName] = 0;
